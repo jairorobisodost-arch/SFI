@@ -162,18 +162,18 @@ INSERT INTO counters (name, counter_number) VALUES
 
 -- ============================================
 -- SEED DATA: USERS
--- Passwords are hashed with password_hash()
--- DEV-ONLY CREDENTIALS:
+-- Passwords are valid bcrypt hashes (password_hash()):
 --   admin   / admin123
 --   teller1 / teller123
 --   teller2 / teller123
 --   teller3 / teller123
+-- No install script needed - login works right after importing this file.
 -- ============================================
 INSERT INTO users (username, password_hash, full_name, role, assigned_counter, force_password_change) VALUES
-    ('admin',   '$2y$10$YourHashWillBeReplacedByPHPScript', 'System Administrator', 'admin',  1, 1),
-    ('teller1', '$2y$10$YourHashWillBeReplacedByPHPScript', 'Maria Santos',       'teller', 1, 1),
-    ('teller2', '$2y$10$YourHashWillBeReplacedByPHPScript', 'Jose Reyes',         'teller', 2, 1),
-    ('teller3', '$2y$10$YourHashWillBeReplacedByPHPScript', 'Ana Cruz',           'teller', 3, 1);
+    ('admin',   '$2y$10$HJmQEsjbEh0GGSXXtvTSOOZPLhlxTh.a1.WW3snIP/yAcit4k.Xly', 'System Administrator', 'admin',  1, 1),
+    ('teller1', '$2y$10$f/7mTEzRzGthz2NxF8sYN.dv7I.qMxERQphqRCJS6SLrDu3YYyidS', 'Maria Santos',       'teller', 1, 1),
+    ('teller2', '$2y$10$f/7mTEzRzGthz2NxF8sYN.dv7I.qMxERQphqRCJS6SLrDu3YYyidS', 'Jose Reyes',         'teller', 2, 1),
+    ('teller3', '$2y$10$f/7mTEzRzGthz2NxF8sYN.dv7I.qMxERQphqRCJS6SLrDu3YYyidS', 'Ana Cruz',           'teller', 3, 1);
 
 -- ============================================
 -- SEED DATA: DEFAULT SETTINGS
