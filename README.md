@@ -17,7 +17,10 @@ public "Check Your Loan" portal.
 1. Copy the `SFI` folder into `htdocs`.
 2. Start Apache + MySQL in XAMPP.
 3. Open phpMyAdmin, create the database `sfi_queuing_db` by importing `database.sql`.
-4. Start the real-time server:
+4. Create your local secret files from the templates (real keys are never stored in git):
+   - Copy `config/secrets.template.php` → `config/secrets.local.php` and fill in your keys.
+   - Copy `server/.env.example` → `server/.env` and fill in the values.
+5. Start the real-time server:
 
    ```bash
    cd server
@@ -70,10 +73,12 @@ All accounts are forced to change their password on first login.
 
 ## Configuration
 
-- `config/config.php` — app constants, Socket server URL, **API keys** (Cohere, IPROG SMS),
-  session/security settings.
+- `config/config.php` — app constants, Socket server URL, session/security settings.
+- `config/secrets.local.php` — **API keys** (Cohere, IPROG SMS, EMIT token). Created by copying
+  `config/secrets.template.php`; git-ignored, so it only exists on each machine.
 - `config/database.php` — MySQL credentials (default: root / empty password, `sfi_queuing_db`).
-- `server/.env` — Socket.IO port and CORS origin.
+- `server/.env` — Socket.IO port, CORS origin, and `EMIT_TOKEN`. Created by copying
+  `server/.env.example`; git-ignored.
 
 ### External services
 
@@ -85,6 +90,8 @@ All accounts are forced to change their password on first login.
 
 ## Security notes
 
+- The app **requires** `config/secrets.local.php` (config.php loads it) — on every fresh clone,
+  copy `config/secrets.template.php` to `config/secrets.local.php` and fill in your keys.
 - Keep API keys private — rotate them if they were ever committed or shared.
 - The `Archive/` and `excel file/` folders contain client data and are blocked from web
   access via `.htaccess` — keep those files in place.
