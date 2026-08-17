@@ -1,0 +1,25 @@
+# Dependencies
+server/node_modules/
+
+# Environment / local config
+server/.env
+config/secrets.local.php
+
+# User-uploaded files (avatars, etc.)
+assets/uploads/
+
+# Database backups (may contain sensitive data)
+*.sql.bak
+backup_*.sql
+
+# Logs
+*.log
+sms-log.txt
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Scratch / local-only folders
+.freebuff/

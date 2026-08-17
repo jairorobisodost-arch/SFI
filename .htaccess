@@ -1,0 +1,19 @@
+# ============================================
+# SFI Queuing System - Root .htaccess
+# Blocks direct web access to sensitive files.
+# (Sensitive folders each have their own .htaccess.)
+# ============================================
+
+# Block download of environment / database / log / config backup files
+<FilesMatch "\.(env|sql|log|ini|sh|bat|md)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Turn off directory listing (in case it was enabled)
+Options -Indexes
